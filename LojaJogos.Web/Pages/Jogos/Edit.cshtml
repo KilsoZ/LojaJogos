@@ -1,0 +1,48 @@
+﻿@page "{id:int}"
+@model LojaJogos.Web.Pages.Jogos.EditModel
+@{
+    ViewData["Title"] = $"Editar Jogo {Model.Jogo?.Titulo}";
+}
+
+<h1>Editar Jogo @Model.Jogo?.Titulo</h1>
+
+<form method="post">
+    <div class="mb-3">
+        <input type="hidden" asp-for="Jogo.Id" />
+        <label asp-for="Jogo.Titulo" class="form-label">Título</label>
+        <input asp-for="Jogo.Titulo" class="form-control" />
+        <span asp-validation-for="Jogo.Titulo" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Jogo.Descricao" class="form-label">Descrição</label>
+        <textarea asp-for="Jogo.Descricao" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Jogo.Preco" class="form-label">Preço</label>
+        <input asp-for="Jogo.Preco" class="form-control" />
+        <span asp-validation-for="Jogo.Preco" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Jogo.DataLancamento">Data de Lançamento</label>
+        <input asp-for="Jogo.DataLancamento" class="form-control" type="date" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Jogo.CategoriaId" class="form-label">Categoria</label>
+        <select asp-for="Jogo.CategoriaId" class="form-select"
+                asp-items="@(new SelectList(Model.Categorias, "Id", "Nome"))">
+            <option value="">Selecione uma categoria</option>
+        </select>
+        <span asp-validation-for="Jogo.CategoriaId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Jogo.ImagemUrl" class="form-label">URL da Imagem</label>
+        <input asp-for="Jogo.ImagemUrl" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+</form>

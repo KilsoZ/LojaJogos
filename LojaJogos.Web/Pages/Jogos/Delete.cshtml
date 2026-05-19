@@ -1,0 +1,14 @@
+﻿@page "{id:int}"
+@model LojaJogos.Web.Pages.Jogos.DeleteModel
+@{
+    ViewData["Title"] = $"Eliminar Jogo {Model.Jogo?.Titulo}";
+}
+
+<h1>Eliminar Jogo @Model.Jogo?.Titulo</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+    <p>Tem certeza que deseja eliminar este jogo?</p>
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,45 @@
+﻿@page
+@model LojaJogos.Web.Pages.Jogos.IndexModel
+@{
+    ViewData["Title"] = "Jogos";
+}
+
+<h1>Lista de Jogos</h1>
+
+<a asp-page="Create" class="btn btn-primary mb-3">Novo Jogo</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Imagem</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Data de Lançamento</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var jogo in Model.Jogos)
+        {
+            <tr>
+                <td>@jogo.Titulo</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(jogo.ImagemUrl))
+                    {
+                        <img src="@jogo.ImagemUrl" alt="@jogo.Titulo"
+                             style="width: 60px; height: 80px; object-fit: cover; border-radius: 4px;" />
+                    }
+                </td>
+                <td>@jogo.CategoriaNome</td>
+                <td>@jogo.Preco.ToString("C", new System.Globalization.CultureInfo("pt-PT"))</td>
+                <td>@jogo.DataLancamento?.ToString("dd/MM/yyyy")</td>
+                
+                <td>
+                    <a asp-page="Edit" asp-route-id="@jogo.Id" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-page="Delete" asp-route-id="@jogo.Id" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
